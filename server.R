@@ -36,22 +36,41 @@ server <- function(input, output, session) {
   
   # read parameters from the URL, code in R/10_input_functions.R:  get_id
   url_id <- reactive({
-    get_id(session)
+    id <- get_id(session)
+    if (id == 0) {
+      return(77681)
+    }
   })
   
-  # load dynamic datasets when a user is accessing the shiny app
+  the_id <- reactive({
+   if (input$selected_Id != "")
+    input$selected_Id
+   else
+     url_id()
+  })
+  
+  # 
+  # load dynamic datasets when a user is accessing the shiny app:
+  # if csv/shiny_server is selected, read file from rs connected, otherwise use REDCap
   read_data <- reactive({
-   if(input$datasource == "csv") 
+   if(input$datasource == "csv") {
      read_data_csv()
-    else 
+   }
+    else {
       read_data_redcap()
+    }
   })
     
-  the_data <- reactive({read_data() %>%
-                         add_id_to_df() %>%
-                         clean_columns()})
+  the_data <- reactive(
+    read_data() %>% 
+      add_id_to_df() %>%
+      clean_columns() %>%
+      reverse_items_in_df(BFI_REVERSED_ITEMS, BFI_MAX_VALUE))
   
-  filtered_data <- reactive(get_data_for_id(the_data(), url_id()))
+  filtered_data <- reactive(get_data_for_id(the_data(), the_id()))
+  
+  filtered_standardized_data <- reactive(filtered_data() %>%
+      standardize_bfi(df_bfi_scales, df_bfi_norms))
   
   
   # DEFINE THE OUTPUTS ------------------------------------------------------
@@ -68,9 +87,9 @@ server <- function(input, output, session) {
   # * renderText	creates character strings
   # * renderUI	  creates a Shiny tag object or HTML
   
-  output$dashboard_title <- renderText(paste0("Report for User ID: ", url_id(), " - Number of data points: ", length(the_data()$record_id), " - data used from: ", input$datasource))
-  output$text_id_selected <- renderText(ifelse(url_id() == 0, "no user id selected, showing all ansers", ""))
+  output$dashboard_title <- renderText(paste0("Report for User ID: ", the_id(), " - Number of data points: ", length(the_data()$record_id), " - data used from: ", input$datasource))
+  output$text_id_selected <- renderText(ifelse(the_id() == 0, "no user id selected, showing all ansers", ""))
   output$the_data <- renderTable(filtered_data())
-  output$plot_alldata <- renderPlot(create_overview_plot(the_data()))
-  output$plot_id <- renderPlot(parallelplot_id(the_data(), url_id()))
+  # output$plot_alldata <- renderPlot(create_overview_plot(the_data()))
+  output$plot_id <- renderPlot(create_standardized_vertical_plot(filtered_standardized_data()))
 }
