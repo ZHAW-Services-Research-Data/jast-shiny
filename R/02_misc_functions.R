@@ -1,5 +1,5 @@
 # Misc functions
-# functions that are helpers
+# functions that are helpers and can be useful in several contexts
 
 
 #' create an id out of the key and the redcap record_id
@@ -15,3 +15,10 @@ create_id <- function(key, record_id) {
   result <- paste0(key, record_id)
   return(as.integer(result))
 }
+
+reverse_item <- function(v, max_value) {
+  return(max_value - v)
+}
+
+
+

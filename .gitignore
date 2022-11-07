@@ -41,3 +41,5 @@ vignettes/*.pdf
 # project specific
 secret_keys.R
 rsconnect/
+
+.DS_Store
