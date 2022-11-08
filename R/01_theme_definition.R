@@ -1,5 +1,5 @@
-# 1. Definition for HTML / Bootstrap
-# 2. Definition for plots
+# 1. Theme definition for HTML / Bootstrap
+# 2. Theme definition for plots
 
 # 1. HTML/Bootstrap Theme definition
 # to use either variant 1 or 2, comment the other variant
@@ -10,12 +10,12 @@
 # fg -> foreground
 # primary -> primary colour for buttons etc.
 # more on this topic: 
-
-# light mode
-light <- bs_theme(version = 5) 
-# dark mode
-dark <- bs_theme(version = 5, bg = "black", fg = "white", primary = "purple")
-
+if (USE_BOOTSTRAP) {
+  # light mode
+  light <- bs_theme(version = 5) 
+  # dark mode
+  dark <- bs_theme(version = 5, bg = "black", fg = "white", primary = "purple")
+}
 
 # Variant 2: use a bootswatch theme. ------
 # See what is available here: https://bootswatch.com/
@@ -23,12 +23,12 @@ dark <- bs_theme(version = 5, bg = "black", fg = "white", primary = "purple")
 # “lumen”, “lux”, “materia”, “minty”, “morph”, “pulse”, “quartz”, “sandstone”, 
 # “simplex”, “sketchy”, “slate”, “solar”, “spacelab”, “superhero”, “united”, 
 # “vapor”, “yeti”, “zephyr”
-
-# light mode
-light <- bs_theme(version = 5, bootswatch = "cosmo") 
-# dark mode
-dark <- bs_theme(version = 5, bootswatch = "superhero")
-
+if (USE_BOOTSTRAP) {
+  # light mode
+  light <- bs_theme(version = 5, bootswatch = "cosmo") 
+  # dark mode
+  dark <- bs_theme(version = 5, bootswatch = "superhero")
+}
 
 
 # 2. ggplot theme -----

@@ -12,9 +12,8 @@ What you need:
 * Best editor to use: RStudio
 * Optionally: renv. 
 	* Renv is a package that allows you to install R packages in a project-specific R library.  It uses a so-called lockfile that specifies the versions of R as well as of all libraries used in a project. This ensures that we are all using the same libraries and avoid unexpected behaviour due to different versions of packages. In general, this is a great way to increase computational reproducibility of your work!
-	* The given renv-lockfile uses R 4.2.1. 
-	* You can always choose to not use renv (delete the renv-folder, renv.lock and .Rprofile-file) - or delete the lock-file and create it based on your own needs.
 	* Learn more about [renv](https://cran.r-project.org/web/packages/renv/vignettes/renv.html)
+	* If you want to use renv for your project: follow the vingette (basically, run `renv::init()`)
 
 
 ### Requirend R-skills
@@ -78,7 +77,7 @@ jast_shiny_template
 |--- www/
      |--- media - resources that you want to display in your app, e.g., logo, other images (png, jpeg,...)
 |--- R/                                      - scripts containing defintions, mostly functions that you will use in the server.R; the files are sourced in alphabetical order when starting the shiny app
-     |--- 00_libraries.R                     - put here all R-packages that you need in your project
+     |--- 00_libraries.R                     - put here all R-packages that you need in your project; you will also find some configuration options at the top of the file
      |--- 00_library_functions.R             - functions that are candidates to put in an R package (that does not yet exist)
      |--- 01_theme_definition.R              - define here the design of the site and also your ggplot theme
      |--- 02_misc_functions.R                - define functions that help you reduce redundant code, like calculations you need in serveral locations of your code
@@ -98,7 +97,7 @@ Please pay attention to not check in any passwords or API-tokens to git. Instead
 	Sys.setenv(name_of_my_secret_variable="my secret key")
 	````
 5. Whenever you start a fresh R session locally, source the file **secret_keys.R**
-6. Whereever you need the secret value, you can access it through the following command (the parameter unset specifies the value that Sys.getenv returns if the environment variable with that name does not exist)
+6. Wherever you need the secret value, you can access it through the following command (the parameter unset specifies the value that Sys.getenv returns if the environment variable with that name does not exist)
 	````
 	Sys.getenv("name_of_my_secret_variable", unset = NA)
 	````
@@ -124,8 +123,8 @@ Purpose: deploy automatically when merging to main
 Steps: todo
 
 ## FAQ
-### Do I need to use renv?
-No, you can use your local R installation and install all required packages into your usual R library folder (see above).
+### Can I use renv?
+Yes, if you prefer, you can add renv to your project.
 
 ## Disclaimer
 This is still under development and will be improved based on the feedback of the first users.
