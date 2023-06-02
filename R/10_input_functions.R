@@ -1,7 +1,7 @@
 #' read_data_redcap
 #' define here your way to read in the main dataset that you want to display
 #' attention: don't put any credentials in the code that you add to git
-#' this implementation requires the environment variales redcap_url and redcap_api_token
+#' this implementation requires the environment variables redcap_url and redcap_api_token
 #'
 #' @return the dataset as read from REDCap
 #' @export

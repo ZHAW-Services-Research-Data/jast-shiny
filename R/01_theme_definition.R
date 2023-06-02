@@ -5,7 +5,7 @@
 # to use either variant 1 or 2, comment the other variant
 
 # Variant 1: just define some colours ------
-# dfine your colours here:
+# define your colours here:
 # bg -> background
 # fg -> foreground
 # primary -> primary colour for buttons etc.

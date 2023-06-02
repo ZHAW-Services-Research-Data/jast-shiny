@@ -100,7 +100,10 @@ Please pay attention to not check in any passwords or API-tokens to git. Instead
 6. Wherever you need the secret value, you can access it through the following command (the parameter unset specifies the value that Sys.getenv returns if the environment variable with that name does not exist)
 	````
 	Sys.getenv("name_of_my_secret_variable", unset = NA)
+
 	````
+7. Alternatively, the .Renviron file can be used to store environmental variables, or they can directly be entered on RSconnect. Any other method (e.g.
+   storing passwords or API-tokens directly as variables in the main script) may jeopardize security: remember, anyone who has this token, may be able to use it to access your data!
 
 ## Deploying and publishing the app
 #### shinyapps

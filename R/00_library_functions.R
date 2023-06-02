@@ -1,5 +1,5 @@
 # These functions will be available through a package at some time.
-# You should not need to change them. If you do, please inform klav@zhaw.ch
+# You should not need to change them. If you do, please inform moen@zhaw.ch
 
 # not in operator
 `%ni%` <- Negate(`%in%`) 

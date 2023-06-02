@@ -1,3 +1,7 @@
+#This script contains functions that can be used to display specific plots. This can be used to store the 
+#code for specific figure formats, that may repeatedly be created in the shiny app.
+#Currently, a function is included to generate standardized vertical plots
+
 # parallelplot_id <- function(df, the_id) {
 #   other_text <- ifelse(the_id == 0, "all", "the others")
 #    df %>%
