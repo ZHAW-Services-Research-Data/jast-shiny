@@ -14,7 +14,9 @@
 #'    http://shiny.rstudio.com/
 #'    
 #' *****************************************************************************
-
+if (file.exists("install.R")){
+  source("install.R")
+}
 
 # start the app
 runApp(getwd())
