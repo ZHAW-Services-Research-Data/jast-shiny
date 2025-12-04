@@ -18,5 +18,11 @@ if (file.exists("install.R")){
   source("install.R")
 }
 
+library(rstudioapi)
+
+# Set the working directory
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+
+
 # start the app
 runApp(getwd())
